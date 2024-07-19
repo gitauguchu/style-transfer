@@ -29,7 +29,7 @@ style = st.selectbox("Choose the style", [i for i in STYLES.keys()])
 if st.button("Style Transfer"):
     if image is not None and style is not None:
         files = {"file": image.getvalue()}
-        res = requests.get(f"http://localhost:8080/{style}", files=files)
+        res = requests.post(f"http://localhost:8080/{style}", files=files)
         img_path = res.json()
         image = Image.open(img_path.get("name"))
         st.image(image, width=500)
